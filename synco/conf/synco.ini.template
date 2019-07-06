@@ -1,0 +1,9 @@
+[DEFAULT]
+
+
+[sql]
+server=
+database=
+username=
+password=
+
