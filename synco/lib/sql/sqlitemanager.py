@@ -19,15 +19,15 @@ class SQLiteManager:
 
     def __init__(self):
 
-        self._conn = sqlite3.connect(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())) +
-                                                     os.sep + 'synco.db'))
+        self._conn = sqlite3.connect(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+                                     + os.sep + 'synco.db')
         self._cursor = self._conn.cursor()
 
         self._cursor.execute('''CREATE TABLE IF NOT EXISTS files
-                            (id INTEGER PRIMARY KEY, guid TEXT, relpath TEXT, total_chunks INTEGER, file_sha256 BLOB''')
+                            (id INTEGER PRIMARY KEY, guid TEXT, relpath TEXT, total_chunks INTEGER, file_sha256 BLOB)''')
 
-        self._cursor.execute('''CREATE TALBE IF NOT EXISTS file_chunks
-                            (id INTEGER PRIMARY KEY, guid TEXT, file_id INTEGER, chunk_id INTEGER, chunk_sha256 BLOB''')
+        self._cursor.execute('''CREATE TABLE IF NOT EXISTS file_chunks
+                            (id INTEGER PRIMARY KEY, guid TEXT, file_id INTEGER, chunk_id INTEGER, chunk_sha256 BLOB)''')
         self._conn.commit()
 
     def close_everything(self):
@@ -56,9 +56,10 @@ class SQLiteManager:
         return self.get_file(file_id)
 
     def get_file(self, file_id:int):
-        query = "SELECT id, guid, relpath, total_chunks, file_sha256 FROM files WHERE file_id = " + str(file_id)
+        query = "SELECT id, guid, relpath, total_chunks, file_sha256 FROM files WHERE id = " + str(file_id)
         self._cursor.execute(query)
         file = self._cursor.fetchone()
+
 
         if file is None:
             return None

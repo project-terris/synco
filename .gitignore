@@ -71,3 +71,4 @@ synco/conf/*.ini
 synco/logs/*
 .idea
 venv
+*.db
