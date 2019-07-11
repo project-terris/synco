@@ -8,7 +8,7 @@ class Server:
 
     def run(self):
         context = zmq.Context()
-        socket = context.socket(zmq.SERVER)
+        socket = context.socket(zmq.REP)
 
         socket.bind("tcp://*:8000")
 
