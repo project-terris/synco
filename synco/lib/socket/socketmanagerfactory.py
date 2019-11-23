@@ -8,6 +8,7 @@ class SocketManagerFactory:
     def create_server_socket()->SocketManager:
         context = zmq.Context()
         socket = context.socket(zmq.REP)
+        socket.bind("tcp://*:8000")
         #TODO: server configuration should be parsed out of the configuration files
         return SocketManager(socket)
 

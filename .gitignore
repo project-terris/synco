@@ -72,3 +72,4 @@ synco/logs/*
 .idea
 venv
 *.db
+__pycache__

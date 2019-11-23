@@ -11,12 +11,9 @@ class Client:
         socket_manager = SocketManagerFactory.create_client_socket(Target.init("tcp://localhost:8000"))
 
         dict_obj = {
-            'message': 'Hello World!',
-            'meta': {
-                'time': 'now',
-                'id': 6,
-                'code': 839021.8392
-            }
+            'action': 'GET',
+            'message': 'RECORDS',
+            'meta': dict(),
         }
 
         socket_manager.send_message(dict_obj)
